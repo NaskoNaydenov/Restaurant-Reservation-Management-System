@@ -22,7 +22,8 @@ namespace RestorantReservations.Controllers
         {
             return View();
         }
-        public IActionResult New()
+       
+        public IActionResult Issue()
         {
             return View();
         }
