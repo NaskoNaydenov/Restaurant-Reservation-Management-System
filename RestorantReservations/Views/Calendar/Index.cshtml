@@ -1,0 +1,21 @@
+﻿<h1>Календар на резервациите</h1>
+<div id="calendar"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            events: '/Calendar/GetReservations', 
+            eventClick: function (info) {
+                alert('Резервация: ' + info.event.title);
+            }
+        });
+        calendar.render();
+    });
+</script>
