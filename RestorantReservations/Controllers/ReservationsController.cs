@@ -22,6 +22,20 @@ namespace RestorantReservations.Controllers
             _context = context;
         }
 
+        //public async Task<IActionResult> ReservationTable(int id)
+        //{
+        //    var table = await _context.Table.FindAsync(id);
+        //    if (table == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    table.available = false;
+        //    _context.Update(table);
+        //    await _context.SaveChangesAsync();
+
+        //    return RedirectToAction(nameof(Index));
+        //}
+
         // GET: Reservations
         public async Task<IActionResult> Index()
         {

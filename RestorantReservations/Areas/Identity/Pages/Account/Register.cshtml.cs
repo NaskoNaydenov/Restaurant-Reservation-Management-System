@@ -100,8 +100,9 @@ namespace RestorantReservations.Areas.Identity.Pages.Account
 
             [Required]
             [StringLength(10)]
+            [RegularExpression(@"^\d{10}$", ErrorMessage = "The phone number must be 10 digits!")]
             [DataType(DataType.PhoneNumber)]
-            [Display(Name = "Phone Number")]
+            [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 
@@ -122,7 +123,11 @@ namespace RestorantReservations.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                
+                user.PhoneNumber = Input.PhoneNumber;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
 
                 if (result.Succeeded)
                 {
