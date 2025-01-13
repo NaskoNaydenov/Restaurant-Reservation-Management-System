@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using RestorantReservations.Data;
 using RestorantReservations.Models;
 
+[Authorize(Roles = "Admin")]
 public class CalendarController : Controller
 {
     private readonly ApplicationDbContext _context;
