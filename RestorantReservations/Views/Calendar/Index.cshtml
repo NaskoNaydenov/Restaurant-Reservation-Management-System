@@ -10,15 +10,18 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
+            initialView: 'dayGridMonth', 
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
-            events: '/Calendar/GetReservations'
+            events: '/Calendar/GetReservations', 
+            eventClick: function (info) {
+                alert('Резервация: ' + info.event.title); 
+            }
         });
 
-        calendar.render();
+        calendar.render(); 
     });
 </script>

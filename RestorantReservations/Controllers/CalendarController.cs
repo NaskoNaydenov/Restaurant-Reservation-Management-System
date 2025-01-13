@@ -9,38 +9,35 @@ using Microsoft.EntityFrameworkCore;
 using RestorantReservations.Data;
 using RestorantReservations.Models;
 
-namespace RestorantReservations.Controllers
+public class CalendarController : Controller
 {
-    public class CalendarController : Controller
+    private readonly ApplicationDbContext _context;
+
+    public CalendarController(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
+        _context = context;
+    }
 
-        public CalendarController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+    [HttpGet]
+    public IActionResult GetReservations()
+    {
+        var reservations = _context.Reservation
+            .Include(r => r.table)
+            .Select(r => new
+            {
+                id = r.ID,
+                title = $"Маса {r.table.Name} - {r.table.capacity} места",
+                start = r.date.ToString("yyyy-MM-ddTHH:mm:ss"),
+                end = r.date.AddHours(2).ToString("yyyy-MM-ddTHH:mm:ss"),
+                color = r.table.available ? "#28a745" : "#dc3545" 
+            })
+            .ToList();
 
-        [HttpGet]
-        public IActionResult GetReservations()
-        {
-            var reservations = _context.Reservation
-                .Include(r => r.table) 
-                .Select(r => new
-                {
-                    id = r.ID, 
-                    title = $"Маса {r.table.Name} - {r.table.capacity} места", 
-                    start = r.date.ToString("yyyy-MM-ddTHH:mm:ss"),
-                    end = r.date.AddHours(2).ToString("yyyy-MM-ddTHH:mm:ss"), 
-                    available = r.table.available 
-                })
-                .ToList();
-
-            return Json(reservations); 
-        }
+        return Json(reservations);
     }
 }
