@@ -25,7 +25,7 @@ namespace RestorantReservations.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Table != null ? 
-                          View(await _context.Table.ToListAsync()) :
+                          View(await _context.Table.Where(a => a.available).ToListAsync()) :
                           Problem("Entity set 'ApplicationDbContext.Table'  is null.");
         }
 

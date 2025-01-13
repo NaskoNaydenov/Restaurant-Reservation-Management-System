@@ -240,7 +240,7 @@ namespace RestorantReservations.Data.Migrations
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("note")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -259,10 +259,10 @@ namespace RestorantReservations.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<bool>("available")
+                    b.Property<bool>("Available")
                         .HasColumnType("bit");
 
-                    b.Property<int>("capacity")
+                    b.Property<int>("Capacity")
                         .HasColumnType("int");
 
                     b.HasKey("id");

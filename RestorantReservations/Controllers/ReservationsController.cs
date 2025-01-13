@@ -22,20 +22,6 @@ namespace RestorantReservations.Controllers
             _context = context;
         }
 
-        //public async Task<IActionResult> ReservationTable(int id)
-        //{
-        //    var table = await _context.Table.FindAsync(id);
-        //    if (table == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    table.available = false;
-        //    _context.Update(table);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
@@ -65,7 +51,7 @@ namespace RestorantReservations.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
-            ViewData["TableId"] = new SelectList(_context.Table, "id", "Name");
+            ViewData["TableId"] = new SelectList(_context.Table.Where(a => a.available), "id", "Name");
             return View();
         }
 
@@ -78,11 +64,18 @@ namespace RestorantReservations.Controllers
         {
             if (ModelState.IsValid)
             {
+                var table = await _context.Table.FindAsync(reservation.TableId);
+                if (table != null)
+                {
+                    table.available = false;
+                    _context.Update(table);
+                }
+
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TableId"] = new SelectList(_context.Table, "id", "Name", reservation.TableId);
+            ViewData["TableId"] = new SelectList(_context.Table.Where(a => a.available), "id", "Name", reservation.TableId);
             return View(reservation);
         }
 
@@ -99,6 +92,8 @@ namespace RestorantReservations.Controllers
             {
                 return NotFound();
             }
+
+            var availableTables = _context.Table.Where(a => a.available || a.id == reservation.TableId);
             ViewData["TableId"] = new SelectList(_context.Table, "id", "Name", reservation.TableId);
             return View(reservation);
         }
@@ -119,6 +114,24 @@ namespace RestorantReservations.Controllers
             {
                 try
                 {
+                    var existingReservation = await _context.Reservation.AsNoTracking().FirstOrDefaultAsync(r => r.ID == id);
+                    if (existingReservation != null && existingReservation.TableId != reservation.TableId)
+                    {
+                        var oldTable = await _context.Table.FindAsync(existingReservation.TableId);
+                        if (oldTable != null)
+                        {
+                            oldTable.available = true;
+                            _context.Update(oldTable);
+                        }
+
+                        var newTable = await _context.Table.FindAsync(reservation.TableId);
+                        if (newTable != null)
+                        {
+                            newTable.available = false;
+                            _context.Update(newTable);
+                        }
+                    }
+
                     _context.Update(reservation);
                     await _context.SaveChangesAsync();
                 }
@@ -135,7 +148,9 @@ namespace RestorantReservations.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TableId"] = new SelectList(_context.Table, "id", "Name", reservation.TableId);
+
+            var availableTables = _context.Table.Where(a => a.available || a.id == reservation.TableId);
+            ViewData["TableId"] = new SelectList(availableTables, "id", "Name", reservation.TableId);
             return View(reservation);
         }
 
@@ -167,13 +182,24 @@ namespace RestorantReservations.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Reservation'  is null.");
             }
-            var reservation = await _context.Reservation.FindAsync(id);
+            var reservation = await _context.Reservation.Include(r => r.table).FirstOrDefaultAsync(r => r.ID == id); /*.FindAsync(id)*/;
+
             if (reservation != null)
             {
+                if (reservation.TableId.HasValue) 
+                {
+                    var table = await _context.Table.FindAsync(reservation.TableId);
+                    if (table != null)
+                    {
+                        table.available = true;
+                        _context.Update(table);
+                    }
+                }
+
                 _context.Reservation.Remove(reservation);
+                await _context.SaveChangesAsync();
             }
             
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
