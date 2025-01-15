@@ -1,4 +1,4 @@
-﻿/*-------------Leyout-------------------*/
+﻿/*-------------Layout-------------------*/
 body {
     margin: 0;
     padding: 0;
@@ -87,7 +87,7 @@ footer {
     height: 60px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-/*-------------Leyout-------------------*/
+/*-------------Layout-------------------*/
 
 /*-------------HomePage-------------------*/
 
@@ -132,4 +132,5 @@ footer {
     min-height: 50vh;
 }
 /*-------------HomePage-------------------*/
+
 
