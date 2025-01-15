@@ -55,6 +55,14 @@ a {
     font-size: 1.3rem;
 }
 
+.fc-event-title {
+    color: #000;
+}
+
+.fc-event-time {
+    color: black;
+}
+
 li {
     list-style: none;
     position: relative;
