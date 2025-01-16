@@ -3,45 +3,48 @@
 @{
     ViewData["Title"] = "Index";
 }
+<div class ="reservation_view">
+<h1 class="reservation_title">Reservation Menu</h1>
+<div class="table_view_reservation">
 
-<h1>Reservation Menu</h1>
-
-<p>
-    <a style="color:black" asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.table)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.table.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" style="color: black" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" style="color: black" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" style="color: black" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <p>
+        <a  class="create_reservation_button" asp-action="Create">Make a Reservation</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.table)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.table.Name)
+                </td>
+                <td>
+                    <a class="CRUD_buttons" asp-action="Edit"  asp-route-id="@item.ID">Edit</a> |
+                    <a class="CRUD_buttons" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a class="CRUD_buttons" asp-action="Delete"  asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+    </div>
+</div>
