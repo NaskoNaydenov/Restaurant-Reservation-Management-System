@@ -5,33 +5,29 @@
     ViewData["Title"] = "Log in";
 }
 
-
 <div class="login-page">
     <div class="login-container">
         <h1>@ViewData["Title"]</h1>
-        <form method="post" asp-action="Login">
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Input.Email">Email</label>
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="Enter your email" required />
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Password">Password</label>
-                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" placeholder="Enter your password" required />
+                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
-            <div class="form-group remember-me">
-                <input type="checkbox" asp-for="Input.RememberMe" />
+            <div class="form-group">
+                <input asp-for="Input.RememberMe" type="checkbox" />
                 <label asp-for="Input.RememberMe">Remember me</label>
             </div>
             <button type="submit" class="btn-submit">Log in</button>
-            <p class="link">
-                Forgot your password? <a asp-page="./ForgotPassword">Click here</a>.
-            </p>
-            <p class="link">
-                Don't have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register now</a>.
-            </p>
         </form>
+        <p><a asp-page="./ForgotPassword">Forgot your password?</a></p>
+        <p><a asp-page="./Register">Register as a new user</a></p>
     </div>
 </div>
 
