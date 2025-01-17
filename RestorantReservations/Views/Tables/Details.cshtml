@@ -1,33 +1,30 @@
 ﻿@model RestorantReservations.Models.Table
-
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
-
-<div>
-    <h4>Table</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.capacity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.capacity)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.available)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.available)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="details_table_view">
+    <div class="row">
+        <h1 class="details_table_title">Table</h1>
+        <div class="col-md-4">
+            <dl >
+                <dt class="control-label">
+                    @Html.DisplayNameFor(model => model.capacity)
+                </dt>
+                <dd class="control-label">
+                    @Html.DisplayFor(model => model.capacity)
+                </dd>
+                <dd class="control-label">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="control-label">
+                    @Html.DisplayNameFor(model => model.available)
+                </dt>
+                <dd class="control-label">
+                    @Html.DisplayFor(model => model.available)
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <a asp-action="Edit" asp-route-id="@Model?.id" class="details_edit_btn">Edit</a>
+    <a asp-action="Index" class="back_to_list">Back to List</a>
 </div>
