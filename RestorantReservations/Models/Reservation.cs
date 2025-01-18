@@ -1,5 +1,7 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Security;
 
 namespace RestorantReservations.Models
 {
@@ -19,5 +21,10 @@ namespace RestorantReservations.Models
         public int? TableId { get; set; }
         [DisplayName("Table Name")]
         public virtual Table? table { get; set; }
+
+        [Required]
+        public string? UserId { get; set; }
+
+        public virtual IdentityUser? User { get; set; }
     }
 }

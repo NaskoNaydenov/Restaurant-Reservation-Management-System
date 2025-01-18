@@ -146,7 +146,7 @@ footer {
 
 /*-------------HomePage-------------------*/
 /*-------------ResrvationPage/TablesPage----------------*/
-/*.Decoration_registration_top_div {
+.Decoration_registration_top_div {
     position: absolute;
     top: 0;
     right: 0;
@@ -155,7 +155,37 @@ footer {
     z-index: -1;
     background: linear-gradient(to bottom, #6a11cb, #2575fc);
     border-radius: 27% 73% 0% 100% / 54% 0% 100% 46%
-}*/
+}
+.Decoration_registration_bottom_div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 600px;
+    height: 400px;
+    z-index: -1;
+    background: linear-gradient(to bottom, #6a11cb, #2575fc);
+    border-radius: 61% 19% 55% 16% / 45% 48% 27% 0%
+}
+.decoration_table_top_div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 400px;
+    z-index: -1;
+    background: linear-gradient(to bottom, #6a11cb, #2575fc);
+    border-radius: 45% 55% 100% 0% / 0% 60% 40% 100%
+}
+.decoration_table_bottom_div {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 600px;
+    height: 400px;
+    z-index: -1;
+    background: linear-gradient(to bottom, #6a11cb, #2575fc);
+    border-radius: 99% 1% 47% 53% / 30% 100% 0% 70%
+}
 .create_reservation_button,
 .create_table_button {
     background: linear-gradient(to bottom, #6a11cb, #2575fc);
@@ -179,17 +209,20 @@ footer {
         color: hsl(36, 100%, 45%);
     }
 
-.reservation_title,
-.table_title {
+.reservation_title{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding-left: 150px;
     padding-top: 50px;
     margin: 0;
 }
-
-.reservation_view {
-    min-height: 80vh;
+.table_title {
+    text-align: right;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-right: 150px;
+    padding-top: 50px;
+    margin: 0;
 }
+
 
 .table_view_reservation,
 .table_view_tables {
@@ -207,7 +240,9 @@ table {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 10px 10px 0 0;
     box-shadow: 0 0 20px rgba(0,0,0,0.50);
-    overflow: hidden
+    overflow: hidden;
+    z-index:1;
+    background-color:#fff
 }
 
     table thead tr {
@@ -250,7 +285,7 @@ table {
 .create_table_view,
 .edit_reservation_view,
 .edit_table_view{
-    min-height: 87.5vh;
+    min-height: 100vh;
     background-image: url(Images/pucture_one.png);
     background-size: cover;
     background-position: center;
@@ -266,7 +301,7 @@ table {
 .delete_reservation_view,
 .details_reservation_view,
 .details_table_view {
-    min-height: 87.5vh;
+    min-height: 100vh;
     background-image: url(Images/pucture_three.jpg);
     background-size: cover;
     background-position: right;
