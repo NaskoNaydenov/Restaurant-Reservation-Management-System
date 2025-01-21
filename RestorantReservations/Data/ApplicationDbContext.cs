@@ -11,6 +11,8 @@ namespace RestorantReservations.Data
         {
         }
         public DbSet<RestorantReservations.Models.Table>? Table { get; set; }
-        public DbSet<RestorantReservations.Models.Reservation>? Reservation { get; set; }
+        public DbSet<RestorantReservations.Models.Reservation>? Reservation { get; set; }   
+    
     }
 }
+ 

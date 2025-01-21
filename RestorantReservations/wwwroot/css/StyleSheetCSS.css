@@ -338,17 +338,21 @@ table {
 .delete_table_title,
 .delete_reservation_title,
 .details_reservation_title,
-.details_table_title {
+.details_table_title,
+.info_accaount_title {
     margin: 0;
     padding-bottom: 20px;
     text-align: center;
     color: #fff;
 }
-.title_reservation_delete {
+.title_reservation_delete,
+.info_accaount_title 
+{
     margin: 0;
     padding-bottom: 20px;
     text-align: center;
     color: #000;
+
 }
 .details_edit_btn {
     text-align: right;
@@ -405,3 +409,20 @@ table {
     background-color:#851208
 }
     /*-------------CRUDpages----------------*/
+.info_accaount_view {
+    background: linear-gradient(to bottom, #6a11cb, #2575fc);
+    animation: gradientAnimation 10s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.propertys{
+    width:500px;
+    background-color:#fff;
+    padding:50px;
+    border-radius:10px
+}
+

@@ -12,8 +12,8 @@ using RestorantReservations.Data;
 namespace RestorantReservations.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250118163717_UserFiltering")]
-    partial class UserFiltering
+    [Migration("20250121122921_fixBug")]
+    partial class fixBug
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,10 +239,6 @@ namespace RestorantReservations.Data.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 
@@ -254,8 +250,6 @@ namespace RestorantReservations.Data.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("TableId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Reservation");
                 });
@@ -341,14 +335,6 @@ namespace RestorantReservations.Data.Migrations
                         .HasForeignKey("TableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
 
                     b.Navigation("table");
                 });

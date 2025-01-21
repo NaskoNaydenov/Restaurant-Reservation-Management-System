@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,8 +26,8 @@ namespace RestorantReservations.Controllers
         // GET: Reservations
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Reservation.Include(r => r.table);
-            return View(await applicationDbContext.ToListAsync());
+                var reservations = _context.Reservation.Include(r => r.table);
+                return View(reservations);
         }
 
         // GET: Reservations/Details/5
@@ -70,7 +71,6 @@ namespace RestorantReservations.Controllers
                     table.available = false;
                     _context.Update(table);
                 }
-
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

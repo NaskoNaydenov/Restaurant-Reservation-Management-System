@@ -8,6 +8,7 @@
         <h1 class="create_reservation_title">Make reservation</h1>
         <div class="col-md-4">
             <form  asp-action="Create" class="table_create_inputs">
+
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="date" class="control-label"></label>
@@ -26,8 +27,7 @@
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />
-                </div> 
-                
+                </div>                 
             </form>
         </div> 
         
